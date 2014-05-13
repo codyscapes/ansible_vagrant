@@ -7,10 +7,20 @@
     createpassword: 'myamazingpassword'
   remote_user: root
   tasks: 
-    - user: name=johnd comment="John Doe" uid=1040
     - name: Create uwsgi directory in log
       file: path=/var/log/uwsgi state=directory
+
     - name: Create uwsgi directory in etc
       file: path=/etc/uwsgi state=directory
+
     - name: Create vassals directory in uwsgi
       file: path=/etc/uwsgi/vassals state=directory
+
+    - name: make link between files create symoblic link for uwsgi.ini
+      file: src=/var/sites/stenosaurus/config/uwsgi.ini dest=/etc/uwsgi/vassals/stenosaurus.ini state=link
+
+    - name: make link between files and create symbolic link for nginx.config
+    - file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link
+    
+    - name: Create emporor.ini file 
+    - file: 
