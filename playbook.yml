@@ -3,8 +3,6 @@
   vars:
     http_port: 4568
     max_clients: 80
-    createuser: 'ansibleremote'
-    createpassword: 'myamazingpassword'
   remote_user: root
   tasks: 
     - name: Create uwsgi directory in log
@@ -22,8 +20,14 @@
     - name: make link between files and create symbolic link for nginx.config
     - file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link
 
-    - name: Create emporor.ini file 
+    - name: Create emporor.ini file from template
     - template: dest=/etc/uwsgi/emperor.ini src=/vagrant/templates/emperor.ini.j2
 
-    - name: Create uwsgi.conf file 
-    - template: dest=/etc/init/uwsgi.conf src=/vagrant/templates/uwsgi.ini.j2
+    - name: Create uwsgi.conf file from template
+    - template: dest=/etc/init/uwsgi.conf src=/vagrant/templates/uwsgi.conf.j2
+
+    - name: Run initctl start uwsgi command
+    - command: initctl start uwsgi 
+
+    - name: Run service nginx restart
+    - command: service nginx restart
