@@ -1,32 +1,38 @@
-# ansible-vagrant-automation
-==========================
+Ansible Work enviroment automation
+=========
 
-### a configuration management tool to set up a virtual development enviroment.
-==========================
+A configuration management tool to set up a virtual development enviroment.
 
-### Instructions
-==========================
+  - Will install uwsgi and nginx
+  - Will set up the correct directories
+  - Will start your server
 
-#### Install Vagrant:  
-* <http://www.vagrantup.com/downloads.html/>
+Instructions
+=========
 
-#### Install Ansible:  
-##### Ubuntu:
-* $ sudo apt-add-repository ppa:rquillo/ansible
-* $ sudo apt-get update
-* $ sudo apt-get install ansible
+#### Install Vagrant
+> * <http://www.vagrantup.com/downloads.html/>
 
-##### OSX via Homebrew:  
-* $ brew update
-* $ brew install ansible
+#### Install Ansible
+> Ubuntu
+>> ```sh
+$ sudo apt-add-repository ppa:rquillo/ansible
+$ sudo apt-get update
+$ sudo apt-get install
+```
+> OSX
+>> ```sh
+>> $ brew update
+>> $ brew install ansible
+```
 
-##### Clone git repository:
-* $ git clone https://github.com/JasonMannon/ansible-vagrant-automation.git
+#### Clone git repository
+>```sh
+$ git clone https://github.com/JasonMannon/ansible-vagrant-automation.git
+```
 
-##### Run:
-* $ cd ansible-vagrant-automation
-* $ vagrant up 
-
-##### Vagrant hints:
-* Gain accesss to the shell: $ vagrant ssh
-
+#### Run:
+>```sh
+$ cd ansible-vagrant-automation
+$ vagrant up
+```
