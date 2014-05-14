@@ -15,8 +15,14 @@
     - name: Configure admins group access in sudo
       lineinfile: "dest=/etc/sudoers.d/admins state=present create=yes regexp='^%admins' line='%admins ALL=(ALL:ALL) NOPASSWD: SETENV: ALL' owner=root group=root mode=0440"
     
+    - name: update apt-get 
+      apt: update_cache=yes
+
     - name: Installs nginx
       apt: name=nginx state=latest
+
+    - name: Installs uwsgi
+      apt: name=uwsgi state=latest
 
     - name: Create uwsgi directory in log
       file: path=/var/log/uwsgi state=directory
