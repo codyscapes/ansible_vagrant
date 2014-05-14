@@ -26,3 +26,6 @@
 
     - name: Create vassals directory in uwsgi
       file: path=/etc/uwsgi/vassals state=directory
+
+    - name: make link between files create symoblic link for uwsgi.ini
+      file: src=/var/sites/stenosaurus/config/uwsgi.ini dest=/etc/uwsgi/vassals/stenosaurus.ini state=link force=yes
