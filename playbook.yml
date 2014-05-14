@@ -23,4 +23,7 @@
     - file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link
 
     - name: Create emporor.ini file 
-    - template: dest=/etc/uwsgi/emperor.ini src=/vagrant/templates/emperor.j2
+    - template: dest=/etc/uwsgi/emperor.ini src=/vagrant/templates/emperor.ini.j2
+
+    - name: Create uwsgi.conf file 
+    - template: dest=/etc/init/uwsgi.conf src=/vagrant/templates/uwsgi.ini.j2
