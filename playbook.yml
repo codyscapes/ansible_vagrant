@@ -1,8 +1,5 @@
 ---
 - hosts: default
-  vars:
-    http_port: 4568
-    max_clients: 80
   user: vagrant
   sudo: yes
   tasks: 
@@ -35,3 +32,9 @@
 
     - name: make link between files and create symbolic link for nginx.config
       file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link force=yes
+
+    - name: start uwsgi 
+      command: echo initctl start uwsgi
+
+    - name: nginx restart 
+      command: service nginx restart
