@@ -21,6 +21,6 @@
 
     - name: make link between files and create symbolic link for nginx.config
     - file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link
-    
+
     - name: Create emporor.ini file 
-    - file: 
+    - template: dest=/etc/uwsgi/emperor.ini src=/vagrant/templates/emperor.j2
