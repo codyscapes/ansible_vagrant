@@ -26,3 +26,7 @@
 ##### Run:
 * $ cd ansible-vagrant-automation
 * $ vagrant up 
+
+##### Vagrant hints:
+* Gain accesss to the shell: $ vagrant ssh
+
