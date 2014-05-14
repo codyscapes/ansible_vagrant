@@ -1,10 +1,23 @@
 ---
-- hosts: 127.0.0.1
+- hosts: default
   vars:
     http_port: 4568
     max_clients: 80
-  remote_user: root
+  user: vagrant
+  sudo: yes
   tasks: 
+    - name: Create admin system group
+      group: name=admins system=yes state=present
+
+    - name: Create administrator account
+      user: name={{ lookup('env', 'USER') }} state=present shell=/bin/sh groups=admins
+
+    - name: Install ssh public key from current account
+      authorized_key: user={{ lookup('env','USER') }} key="{{ lookup('file','~/.ssh/id_rsa.pub') }}"
+
+    - name: Configure admins group access in sudo
+      lineinfile: "dest=/etc/sudoers.d/admins state=present create=yes regexp='^%admins' line='%admins ALL=(ALL:ALL) NOPASSWD: SETENV: ALL' owner=root group=root mode=0440"
+
     - name: Create uwsgi directory in log
       file: path=/var/log/uwsgi state=directory
 
@@ -13,21 +26,3 @@
 
     - name: Create vassals directory in uwsgi
       file: path=/etc/uwsgi/vassals state=directory
-
-    - name: make link between files create symoblic link for uwsgi.ini
-      file: src=/var/sites/stenosaurus/config/uwsgi.ini dest=/etc/uwsgi/vassals/stenosaurus.ini state=link
-
-    - name: make link between files and create symbolic link for nginx.config
-    - file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link
-
-    - name: Create emporor.ini file from template
-    - template: dest=/etc/uwsgi/emperor.ini src=/vagrant/templates/emperor.ini.j2
-
-    - name: Create uwsgi.conf file from template
-    - template: dest=/etc/init/uwsgi.conf src=/vagrant/templates/uwsgi.conf.j2
-
-    - name: Run initctl start uwsgi command
-    - command: initctl start uwsgi 
-
-    - name: Run service nginx restart
-    - command: service nginx restart

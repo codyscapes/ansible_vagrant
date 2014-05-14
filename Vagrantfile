@@ -21,7 +21,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # end
   config.vm.provision "ansible" do |ansible|
         ansible.playbook = "playbook.yml"
-        ansible.sudo = true
   end
 
   # Disable automatic box update checking. If you disable this, then
