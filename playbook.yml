@@ -39,8 +39,11 @@
     - name: make link between files and create symbolic link for nginx.config
       file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link force=yes
 
+    - name: Create emperor.ini
+      copy: src=files/emporer.ini dest=/etc/uwsgi/emporor.ini 
+
     - name: start uwsgi 
-      command: echo initctl start uwsgi
+      command: initctl start uwsgi
 
     - name: nginx restart 
       command: service nginx restart
