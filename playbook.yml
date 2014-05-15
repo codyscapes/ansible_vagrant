@@ -28,10 +28,7 @@
       apt: name=python-pip state=latest
 
     - name: Installs uwsgi
-      apt: name=uwsgi state=latest
-
-    - name: Updates uwsgi to latest version
-      command: pip install -U uwsgi
+      command: pip install uwsgi
 
     - name: Create uwsgi directory in log
       file: path=/var/log/uwsgi state=directory
