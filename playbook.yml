@@ -18,11 +18,20 @@
     - name: update apt-get 
       apt: update_cache=yes
 
+    - name: install python-dev
+      apt: name=python-dev
+
     - name: Installs nginx
       apt: name=nginx state=latest
 
+    - name: Installs pip
+      apt: name=python-pip state=latest
+
     - name: Installs uwsgi
       apt: name=uwsgi state=latest
+
+    - name: Updates uwsgi to latest version
+      command: pip install -U uwsgi
 
     - name: Create uwsgi directory in log
       file: path=/var/log/uwsgi state=directory
@@ -41,6 +50,9 @@
 
     - name: Create emperor.ini
       copy: src=files/emporer.ini dest=/etc/uwsgi/emporor.ini 
+
+    - name: create uwsgi.conf 
+      copy: src=files/uwsgi.conf dest=/etc/init/uwsgi.conf
 
     - name: start uwsgi 
       command: initctl start uwsgi
