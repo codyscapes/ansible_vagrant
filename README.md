@@ -36,3 +36,4 @@ $ git clone https://github.com/JasonMannon/ansible-vagrant-automation.git
 $ cd ansible-vagrant-automation
 $ vagrant up
 ```
+> * visit <http://127.0.0.1:8080/> and you should see a welcome to nginx page
