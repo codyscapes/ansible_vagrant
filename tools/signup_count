@@ -1,0 +1,10 @@
+#!/usr/bin/python
+
+import sqlite3 as sql
+
+db = sql.connect("/var/sites/stenosaurus/app/data/stenosaurus.db")
+query = db.execute("select * from signups")
+reply = query.fetchall()
+for row in reply:
+  print row
+print "Total signups:", len(reply)

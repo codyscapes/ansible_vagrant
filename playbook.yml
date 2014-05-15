@@ -18,6 +18,9 @@
     - name: update apt-get 
       apt: update_cache=yes
 
+    - name: Install virtualenv 
+      apt: name=python-virtualenv state=latest
+
     - name: install python-dev
       apt: name=python-dev
 
@@ -46,10 +49,10 @@
       file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link force=yes
 
     - name: Create emperor.ini
-      copy: src=files/emporer.ini dest=/etc/uwsgi/emporor.ini 
+      copy: src=config/emporer.ini dest=/etc/uwsgi/emporor.ini 
 
     - name: create uwsgi.conf 
-      copy: src=files/uwsgi.conf dest=/etc/init/uwsgi.conf
+      copy: src=config/uwsgi.conf dest=/etc/init/uwsgi.conf
 
     - name: start uwsgi 
       command: initctl start uwsgi
