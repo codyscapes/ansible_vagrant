@@ -1,0 +1,26 @@
+- name: update apt-get 
+  apt: update_cache=yes
+
+- name: Install virtualenv 
+  apt: name=python-virtualenv state=latest
+
+- name: Installs pip
+  apt: name=python-pip state=latest
+
+- name: Load virtualenv into stenosaurus directory
+  command: virtualenv /vagrant/stenosaurus/bin
+
+- name: Install pyramid and pyramid-make through virtualenv
+  easy_install: name={{ item }} virtualenv=/vagrant/stenosaurus/bin
+  with_items:
+    - pyramid
+    - pyramid-mako
+
+- name: install python-dev
+  apt: name=python-dev
+
+- name: Installs nginx
+  apt: name=nginx state=latest
+
+- name: Installs uwsgi
+  command: pip install uwsgi

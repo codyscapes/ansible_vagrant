@@ -1,0 +1,32 @@
+- name: Create uwsgi directory in log
+  file: path=/var/log/uwsgi state=directory
+
+- name: Create uwsgi directory in etc
+  file: path=e/tc/uwsgi state=directory
+
+- name: Create vassals directory in uwsgi
+  file: path=/etc/uwsgi/vassals state=directory
+
+- name: create log directory
+  file: path=/var/sites/stenosaurus/log state=directory
+
+- name: make link between files create symoblic link for uwsgi.ini
+  file: src=/var/sites/stenosaurus/config/uwsgi.ini dest=/etc/uwsgi/vassals/stenosaurus.ini state=link force=yes
+
+- name: make link between files and create symbolic link for nginx.config
+  file: src=/var/sites/stenosaurus/config/nginx.conf dest=/etc/nginx/sites-enabled/stenosaurus state=link force=yes
+
+- name: create symbolic link to access the nginx access-log
+  file: src=/var/log/nginx/access.log dest=/var/sites/stenosaurus/log/nginx_access.log state=link force=yes
+
+- name: Create emperor.ini
+  copy: src=files/emporer.ini dest=/etc/uwsgi/emporor.ini 
+
+- name: create uwsgi.conf 
+  copy: src=files/uwsgi.conf dest=/etc/init/uwsgi.conf
+
+- name: start uwsgi 
+  command: sudo initctl start uwsgi
+
+- name: nginx restart 
+  command: sudo service nginx restart
