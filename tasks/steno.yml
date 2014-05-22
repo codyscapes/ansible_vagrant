@@ -20,7 +20,7 @@
   file: src=/var/log/nginx/access.log dest=/var/sites/stenosaurus/log/nginx_access.log state=link force=yes
 
 - name: Create emperor.ini
-  copy: src=files/emporer.ini dest=/etc/uwsgi/emporor.ini 
+  copy: src=files/emperor.ini dest=/etc/uwsgi/emperor.ini 
 
 - name: create uwsgi.conf 
   copy: src=files/uwsgi.conf dest=/etc/init/uwsgi.conf
@@ -29,4 +29,4 @@
   command: sudo initctl start uwsgi
 
 - name: nginx restart 
-  command: sudo service nginx restart
+  command: sudo service nginx start
