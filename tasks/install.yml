@@ -8,13 +8,13 @@
   apt: name=python-pip state=latest
 
 - name: Load virtualenv into stenosaurus directory
-  command: virtualenv /vagrant/stenosaurus/bin
+  command: virtualenv /vagrant/stenosaurus/env
 
 - name: Install pyramid and pyramid-make through virtualenv
-  easy_install: name={{ item }} virtualenv=/vagrant/stenosaurus/bin
+  easy_install: name={{ item }} virtualenv=/vagrant/stenosaurus/env
   with_items:
-    - pyramid
-    - pyramid-mako
+    - bin/pyramid
+    - bin/pyramid-mako
 
 - name: install python-dev
   apt: name=python-dev

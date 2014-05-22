@@ -2,7 +2,7 @@
   file: path=/var/log/uwsgi state=directory
 
 - name: Create uwsgi directory in etc
-  file: path=e/tc/uwsgi state=directory
+  file: path=/etc/uwsgi state=directory
 
 - name: Create vassals directory in uwsgi
   file: path=/etc/uwsgi/vassals state=directory
