@@ -38,6 +38,11 @@ $ git clone https://github.com/JasonMannon/ansible-vagrant-automation.git
 
 > * Insert Stenosaurus directory into ansible-vagrant-automation directory
 > * Copy /config/nginx.conf/ contents into /stenosaurus/config/nginx.conf
+> * Open Vagrantfile and change 
+>>```sh
+config.vm.synced_folder "your-path/stenosaurus"
+```
+> with the path to your stenosaurus directory
 
 
 #### Run:
