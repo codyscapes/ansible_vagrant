@@ -7,7 +7,7 @@
 - name: Installs pip
   apt: name=python-pip state=latest
 
-- name: Install pyramid and pyramid-make through virtualenv
+- name: Install pyramid and pyramid-mako through virtualenv
   easy_install: name={{ item }} virtualenv=/var/sites/stenosaurus/env
   with_items:
     - pyramid
