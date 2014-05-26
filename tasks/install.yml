@@ -1,7 +1,7 @@
-- name: update apt-get 
+- name: update apt-get
   apt: update_cache=yes
 
-- name: Install virtualenv 
+- name: Install virtualenv
   apt: name=python-virtualenv state=latest
 
 - name: Installs pip
@@ -21,3 +21,10 @@
 
 - name: Installs uwsgi
   command: pip install uwsgi
+
+- name: Install postgresql psycopg2 and libpq-dev
+  action: apt name={{item}} virtualenv=/var/sites/stenosaurus/env
+  with_items:
+    - postgresql
+    - libpq-dev
+    - python-psycopg2
